@@ -6,17 +6,7 @@
 
 ![stats](https://github-stats-extended.vercel.app/api?username=amine-jelassi7&show_icons=true&count_private=true&theme=github_dark&hide_border=true&bg_color=0a0e14&title_color=5eead4&icon_color=f2c14e&text_color=d3dce6&ring_color=5eead4)![langs](https://github-stats-extended.vercel.app/api/top-langs/?username=amine-jelassi7&layout=compact&theme=github_dark&hide_border=true&bg_color=0a0e14&title_color=5eead4&text_color=d3dce6)
 
-<p align="center">
-  <img src="./header.svg" alt="Amine Jelassi Terminal Header" width="100%" />
-</p>
 
-<p align="center">
-  <em>"Building games I'll never finish and models I'll never deploy."</em>
-</p>
-
----
-
-### 🛠️ Tech Stack
 ...
 
 ## 🛠️ Tech Stack

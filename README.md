@@ -1,5 +1,9 @@
 <div align="center">
 
+<img src="https://www.gitskins.com/api/readme-reference/hero?username=amine-jelassi7&theme=neon&role=%20&location=Tunisia%20%2C%20Mannouba&v=readme-reference-2" width="100%" alt="Amine Jelassi profile banner" />
+
+<div align="center"><img src="https://www.gitskins.com/api/readme-reference/divider?username=amine-jelassi7&theme=neon&v=readme-reference-2" width="100%" alt="Section divider" /></div>
+
 ![header](assets/header.svg)
 
 
@@ -7,8 +11,9 @@
 ![stats](https://github-stats-extended.vercel.app/api?username=amine-jelassi7&show_icons=true&count_private=true&theme=github_dark&hide_border=true&bg_color=0a0e14&title_color=5eead4&icon_color=f2c14e&text_color=d3dce6&ring_color=5eead4)![langs](https://github-stats-extended.vercel.app/api/top-langs/?username=amine-jelassi7&layout=compact&theme=github_dark&hide_border=true&bg_color=0a0e14&title_color=5eead4&text_color=d3dce6)
 
 
-...
 
+...
+<div align="center"><img src="https://www.gitskins.com/api/readme-reference/divider?username=amine-jelassi7&theme=neon&v=readme-reference-2" width="100%" alt="Section divider" /></div>
 ## 🛠️ Tech Stack
 
 ### 🧠 AI / ML Engineering

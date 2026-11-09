@@ -21,6 +21,7 @@
   <rect x="190" y="58" width="8" height="15" fill="#5eead4">
     <animate attributeName="opacity" values="1;1;0;0;1" keyTimes="0;0.5;0.51;1;1" dur="1s" repeatCount="indefinite"/>
   </rect>
+  
 
   <text x="28" y="130" font-family="SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace" font-weight="700" font-size="40" fill="#d3dce6">SOFTWARE ENGINEERING <tspan fill="#5eead4">STUDENT</tspan></text>
   <text x="28" y="160" font-family="SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace" font-size="15" fill="#5c6773">Software Engineering Student · INSAT — University of Carthage</text>

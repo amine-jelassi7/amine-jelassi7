@@ -1,53 +1,80 @@
 <div align="center">
 
-<img src="https://www.gitskins.com/api/readme-reference/hero?username=amine-jelassi7&theme=neon&role=%20&location=Tunisia%20%2C%20Mannouba&v=readme-reference-2" width="100%" alt="Amine Jelassi profile banner" />
+<picture>
+  <source media="(prefers-color-scheme: light)" srcset="https://www.gitskins.com/api/section/hero?username=amine-jelassi7&theme=aurora&avatar=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F133502083%3Fu%3D17256d6489568a23b0d594ed00f396243dada5fa%26v%3D4&variant=living-identity&label=Amine%20Jelassi&v=wow-living-identity-1&mode=light" />
+  <img src="https://www.gitskins.com/api/section/hero?username=amine-jelassi7&theme=aurora&avatar=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F133502083%3Fu%3D17256d6489568a23b0d594ed00f396243dada5fa%26v%3D4&variant=living-identity&label=Amine%20Jelassi&v=wow-living-identity-1&mode=dark" width="100%" alt="Amine Jelassi animated Living Identity portrait and ASCII name" />
+</picture>
 
-<div align="center"><img src="https://www.gitskins.com/api/readme-reference/divider?username=amine-jelassi7&theme=neon&v=readme-reference-2" width="100%" alt="Section divider" /></div>
+
+
+
+
 
 ![header](assets/header.svg)
-
-
-
-![stats](https://github-stats-extended.vercel.app/api?username=amine-jelassi7&show_icons=true&count_private=true&theme=github_dark&hide_border=true&bg_color=0a0e14&title_color=5eead4&icon_color=f2c14e&text_color=d3dce6&ring_color=5eead4)![langs](https://github-stats-extended.vercel.app/api/top-langs/?username=amine-jelassi7&layout=compact&theme=github_dark&hide_border=true&bg_color=0a0e14&title_color=5eead4&text_color=d3dce6)
-
-
-
-...
 <div align="center"><img src="https://www.gitskins.com/api/readme-reference/divider?username=amine-jelassi7&theme=neon&v=readme-reference-2" width="100%" alt="Section divider" /></div>
+
+
+
+<div align="center">
+
+
+
+<br/>
+
+<img src="https://www.gitskins.com/api/section/heatmap?username=amine-jelassi7&theme=neon&style=aura" width="100%" alt="Contribution activity" />
+
+</div>
+
+<picture>
+  <source media="(prefers-color-scheme: light)" srcset="https://www.gitskins.com/api/section/solar-orbits?username=amine-jelassi7&avatar=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F133502083%3Fu%3D17256d6489568a23b0d594ed00f396243dada5fa%26v%3D4&mode=light" />
+  <img src="https://www.gitskins.com/api/section/solar-orbits?username=amine-jelassi7&avatar=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F133502083%3Fu%3D17256d6489568a23b0d594ed00f396243dada5fa%26v%3D4&mode=dark" width="100%" alt="My languages as planets around me" />
+</picture>
+
+
+
+
+
+
+
+
+<div align="center"><img src="https://www.gitskins.com/api/readme-reference/divider?username=amine-jelassi7&theme=neon&v=readme-reference-2" width="100%" alt="Section divider" /></div>
+
 ## 🛠️ Tech Stack
 
-### 🧠 AI / ML Engineering
-![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
-![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)
-![Scikit--Learn](https://img.shields.io/badge/Scikit--Learn-F7931E?style=for-the-badge&logo=scikitlearn&logoColor=white)
-![OpenCV](https://img.shields.io/badge/OpenCV-5C3EE8?style=for-the-badge&logo=opencv&logoColor=white)
-![YOLO](https://img.shields.io/badge/YOLO-00FFFF?style=for-the-badge&logo=yolo&logoColor=black)
-![MediaPipe](https://img.shields.io/badge/MediaPipe-0097A7?style=for-the-badge&logo=google&logoColor=white)
-![Pandas](https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white)
-![NumPy](https://img.shields.io/badge/NumPy-013243?style=for-the-badge&logo=numpy&logoColor=white)
+<h3>💻 Languages</h3>
+<p align="center">
+  <a href="https://www.python.org" target="_blank"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" alt="python" width="70"/></a>&nbsp;&nbsp;&nbsp;
+  <a href="https://en.cppreference.com/w/c" target="_blank"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/c/c-original.svg" alt="c" width="70"/></a>&nbsp;&nbsp;&nbsp;
+  <a href="https://isocpp.org/" target="_blank"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/cplusplus/cplusplus-original.svg" alt="c++" width="70"/></a>&nbsp;&nbsp;&nbsp;
+  <a href="https://www.java.com" target="_blank"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg" alt="java" width="70"/></a>&nbsp;&nbsp;&nbsp;
+  <a href="https://www.rust-lang.org/" target="_blank"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/rust/rust-original.svg" alt="rust" width="70"/></a>&nbsp;&nbsp;&nbsp;
+  <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" alt="javascript" width="70"/></a>&nbsp;&nbsp;&nbsp;
+  <a href="https://www.typescriptlang.org/" target="_blank"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-original.svg" alt="typescript" width="70"/></a>
+</p>
 
-### 🎮 Game Development & Graphics
-![C++](https://img.shields.io/badge/C%2B%2B-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=white)
-![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
-![C](https://img.shields.io/badge/C-A8B9CC?style=for-the-badge&logo=c&logoColor=black)
-![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white)
-![Unreal Engine](https://img.shields.io/badge/Unreal_Engine-0E1128?style=for-the-badge&logo=unrealengine&logoColor=white)
+<h3>🧠 AI / ML Engineering</h3>
+<p align="center">
+  <a href="https://www.python.org" target="_blank"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" alt="python" width="70"/></a>&nbsp;&nbsp;&nbsp;
+  <a href="https://jupyter.org/" target="_blank"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/jupyter/jupyter-original-wordmark.svg" alt="jupyter" width="70"/></a>&nbsp;&nbsp;&nbsp;
+  <a href="https://numpy.org/" target="_blank"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/numpy/numpy-original.svg" alt="numpy" width="70"/></a>&nbsp;&nbsp;&nbsp;
+  <a href="https://pandas.pydata.org/" target="_blank"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/pandas/pandas-original.svg" alt="pandas" width="70"/></a>&nbsp;&nbsp;&nbsp;
+  <a href="https://scikit-learn.org/" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Scikit_learn_logo_small.svg" alt="scikit-learn" width="70"/></a>&nbsp;&nbsp;&nbsp;
+  <a href="https://pytorch.org/" target="_blank"><img src="https://www.vectorlogo.zone/logos/pytorch/pytorch-icon.svg" alt="pytorch" width="70"/></a>&nbsp;&nbsp;&nbsp;
+  <a href="https://opencv.org/" target="_blank"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/opencv/opencv-original.svg" alt="opencv" width="70"/></a>&nbsp;&nbsp;&nbsp;
+  <a href="https://www.ultralytics.com/" target="_blank"><img src="https://images.g2crowd.com/uploads/product/image/large_detail/large_detail_2e1d25e4ac8ebd8d5bb1cf26e508446c/ultralytics.png" alt="yolo" width="70"/></a>&nbsp;&nbsp;&nbsp;
+  <a href="https://pypi.org/project/mediapipe/" target="_blank"><img src="https://viz.mediapipe.dev/logo.png" alt="mediapipe" width="70"/></a>
+</p>
 
-
-### ⚔️ Competitive Programming & CTFs
-![C++](https://img.shields.io/badge/C%2B%2B-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=white)
-![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
-![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)
-![Bash](https://img.shields.io/badge/Bash-4EAA25?style=for-the-badge&logo=gnu-bash&logoColor=white)
-
-### 🌐 Web Development
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
-![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
-![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
-![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)
-![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
-![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+<h3>🌐 Web Development</h3>
+<p align="center">
+  <a href="https://nodejs.org/" target="_blank"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original.svg" alt="nodejs" width="70"/></a>&nbsp;&nbsp;&nbsp;
+  <a href="https://nestjs.com/" target="_blank"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nestjs/nestjs-original.svg" alt="nestjs" width="70"/></a>&nbsp;&nbsp;&nbsp;
+  <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" target="_blank"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original.svg" alt="html" width="70"/></a>&nbsp;&nbsp;&nbsp;
+  <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" target="_blank"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original.svg" alt="css" width="70"/></a>&nbsp;&nbsp;&nbsp;
+  <a href="https://tailwindcss.com/" target="_blank"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/tailwindcss/tailwindcss-original.svg" alt="tailwindcss" width="70"/></a>&nbsp;&nbsp;&nbsp;
+  <a href="https://www.postgresql.org/" target="_blank"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/postgresql/postgresql-original.svg" alt="postgres" width="70"/></a>&nbsp;&nbsp;&nbsp;
+  <a href="https://www.mysql.com/" target="_blank"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original.svg" alt="mysql" width="70"/></a>
+</p>
 
 ## 📬 Connect & Profiles
 
@@ -56,3 +83,4 @@
 [![LeetCode](https://img.shields.io/badge/LeetCode-FFA116?style=for-the-badge&logo=leetcode&logoColor=black)](https://leetcode.com/u/Ameen44/)
 
 </div>
+

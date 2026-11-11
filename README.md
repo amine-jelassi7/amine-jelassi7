@@ -47,10 +47,10 @@
   <a href="https://jupyter.org/" target="_blank"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/jupyter/jupyter-original-wordmark.svg" alt="jupyter" width="70"/></a>&nbsp;&nbsp;&nbsp;
   <a href="https://numpy.org/" target="_blank"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/numpy/numpy-original.svg" alt="numpy" width="70"/></a>&nbsp;&nbsp;&nbsp;
   <a href="https://pandas.pydata.org/" target="_blank"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/pandas/pandas-original.svg" alt="pandas" width="70"/></a>&nbsp;&nbsp;&nbsp;
+  <a href="https://matplotlib.org/" target="_blank"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/matplotlib/matplotlib-original.svg" alt="matplotlib" width="70"/></a>&nbsp;&nbsp;&nbsp;
   <a href="https://scikit-learn.org/" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Scikit_learn_logo_small.svg" alt="scikit-learn" width="70"/></a>&nbsp;&nbsp;&nbsp;
   <a href="https://pytorch.org/" target="_blank"><img src="https://www.vectorlogo.zone/logos/pytorch/pytorch-icon.svg" alt="pytorch" width="70"/></a>&nbsp;&nbsp;&nbsp;
   <a href="https://opencv.org/" target="_blank"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/opencv/opencv-original.svg" alt="opencv" width="70"/></a>&nbsp;&nbsp;&nbsp;
-  <a href="https://www.ultralytics.com/" target="_blank"><img src="https://images.g2crowd.com/uploads/product/image/large_detail/large_detail_2e1d25e4ac8ebd8d5bb1cf26e508446c/ultralytics.png" alt="yolo" width="70"/></a>&nbsp;&nbsp;&nbsp;
   <a href="https://pypi.org/project/mediapipe/" target="_blank"><img src="https://viz.mediapipe.dev/logo.png" alt="mediapipe" width="70"/></a>
 </p>
 

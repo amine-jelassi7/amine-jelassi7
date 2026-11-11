@@ -13,7 +13,7 @@
 <div align="center">
 <br/>
 
-<img src="https://www.gitskins.com/api/section/heatmap?username=amine-jelassi7&theme=neon&style=aura" width="100%" alt="Contribution activity" />
+
 
 <br/>
 

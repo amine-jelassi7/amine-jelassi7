@@ -1,0 +1,266 @@
+name: Update contribution city
+
+# One-file setup: this workflow contains the generator, so nothing else is needed.
+# It writes contrib-city.svg to the repo root; reference it from your README.
+
+on:
+  schedule:
+    - cron: "17 */6 * * *"   # every 6 hours
+  workflow_dispatch:          # run manually from the Actions tab
+  push:
+    paths: [".github/workflows/contrib-city.yml"]   # builds it right after you add this file
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Generate and commit contribution city
+        env:
+          GH_USER: ${{ github.repository_owner }}
+          GH_TOKEN: ${{ secrets.CONTRIB_TOKEN || secrets.GITHUB_TOKEN }}
+        run: |
+          python3 - <<'PY'
+          #!/usr/bin/env python3
+          """Regenerate contrib-city.svg (isometric contribution city) from live GitHub data.
+
+          Env vars:
+            GH_USER   GitHub username (default: amine-jelassi7)
+            GH_TOKEN  token for the GraphQL API (falls back to GITHUB_TOKEN)
+            OUT       output path (default: contrib-city.svg)
+          """
+          import json
+          import os
+          import sys
+          import urllib.request
+          from datetime import date, datetime, timedelta, timezone
+
+          USER = os.environ.get("GH_USER", "amine-jelassi7")
+          OUT = os.environ.get("OUT", "contrib-city.svg")
+
+          # ---- look & feel (same palette as the flat contribution map) ----------------
+          COLORS = ["#0f1733", "#15367a", "#2563eb", "#00d4ff", "#ffd166"]
+          THRESHOLDS = [1, 3, 4, 5]          # count >= 1 -> L1, >= 3 -> L2, >= 4 -> L3, >= 5 -> L4
+          MAX_TOWER = 44                     # px height of the tallest building (plus 5 base)
+          FLAT = 2.2                         # px height of an empty lot
+
+          # ---- projection (slightly rotated isometric: weeks run left->right) ---------
+          WX, WY = 14.85, 2.9                # one week  -> screen offset
+          DX, DY = -5.4, 7.8                 # one day   -> screen offset
+          F = 0.88                           # building footprint (fraction of a tile)
+          X0, Y0 = 126.0, 128.0              # screen position of tile (0, 0)
+          W, H = 1000, 456
+
+          MONTHS = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN",
+                    "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"]
+
+
+          # ------------------------------------------------------------------ data ----
+          def fetch(login, start, today):
+              token = os.environ.get("GH_TOKEN") or os.environ.get("GITHUB_TOKEN")
+              if not token:
+                  sys.exit("Set GH_TOKEN (or GITHUB_TOKEN) to a GitHub token.")
+              query = """
+              query($login:String!,$from:DateTime!,$to:DateTime!){
+                user(login:$login){
+                  contributionsCollection(from:$from,to:$to){
+                    contributionCalendar{ weeks{ contributionDays{ date contributionCount } } }
+                  }
+                }
+              }"""
+              variables = {"login": login,
+                           "from": f"{start.isoformat()}T00:00:00Z",
+                           "to": f"{today.isoformat()}T23:59:59Z"}
+              req = urllib.request.Request(
+                  "https://api.github.com/graphql",
+                  data=json.dumps({"query": query, "variables": variables}).encode(),
+                  headers={"Authorization": f"bearer {token}", "User-Agent": "contrib-city"},
+              )
+              with urllib.request.urlopen(req, timeout=30) as r:
+                  payload = json.load(r)
+              if payload.get("errors") or not payload.get("data", {}).get("user"):
+                  sys.exit(f"GitHub API error: {payload.get('errors') or 'user not found'}")
+              weeks = payload["data"]["user"]["contributionsCollection"]["contributionCalendar"]["weeks"]
+              days = {}
+              for w in weeks:
+                  for d in w["contributionDays"]:
+                      dt = date.fromisoformat(d["date"])
+                      if start <= dt <= today:
+                          days[dt] = d["contributionCount"]
+              return days
+
+
+          def level(n):
+              lv = 0
+              for i, t in enumerate(THRESHOLDS, 1):
+                  if n >= t:
+                      lv = i
+              return lv
+
+
+          def streaks(days, today):
+              longest = run = 0
+              d = min(days)
+              while d <= today:
+                  run = run + 1 if days.get(d, 0) > 0 else 0
+                  longest = max(longest, run)
+                  d += timedelta(days=1)
+              cur = 0
+              d = today if days.get(today, 0) > 0 else today - timedelta(days=1)
+              while days.get(d, 0) > 0:
+                  cur += 1
+                  d -= timedelta(days=1)
+              return longest, cur
+
+
+          # --------------------------------------------------------------- drawing ----
+          def shade(hexcol, f):
+              r, g, b = (int(hexcol[i:i + 2], 16) for i in (1, 3, 5))
+              return "#%02x%02x%02x" % (round(r * f), round(g * f), round(b * f))
+
+
+          def P(w, d, h=0.0):
+              return X0 + w * WX + d * DX, Y0 + w * WY + d * DY - h
+
+
+          def pts(*points):
+              return " ".join(f"{x:.1f},{y:.1f}" for x, y in points)
+
+
+          def building(w, d, h):
+              ax, ay = P(w, d, h)
+              a = (ax, ay)
+              b = (ax + F * WX, ay + F * WY)
+              c = (b[0] + F * DX, b[1] + F * DY)
+              e = (ax + F * DX, ay + F * DY)
+              dn = lambda p: (p[0], p[1] + h)
+              return (pts(a, b, c, e),            # top
+                      pts(e, c, dn(c), dn(e)),    # front-left face (+day side)
+                      pts(b, c, dn(c), dn(b)))    # right face      (+week side)
+
+
+          def render(days, login, today):
+              start = min(days)
+              first_sun = start - timedelta(days=(start.weekday() + 1) % 7)
+              ncols = (today - first_sun).days // 7 + 1
+
+              total = sum(days.values())
+              active = sum(1 for v in days.values() if v > 0)
+              best = max(days.values())
+              longest, current = streaks(days, today)
+
+              cols = {}
+              for dt in sorted(days):
+                  cols.setdefault((dt - first_sun).days // 7, []).append(((dt.weekday() + 1) % 7, dt, days[dt]))
+
+              # stylesheet: tile colours per level
+              css_levels = ""
+              for i, c in enumerate(COLORS):
+                  extra = ";stroke:#19234a;stroke-width:.5" if i == 0 else ""
+                  css_levels += (f".t{i}{{fill:{c}{extra}}}.l{i}{{fill:{shade(c, .74)}}}"
+                                 f".r{i}{{fill:{shade(c, .54)}}}\n")
+
+              # ground plate
+              w0, d0, w1, d1 = -0.4, -0.4, ncols + 0.1, 7.28
+              T = 5
+              plate = (f'<polygon points="{pts(P(w0, d1), P(w1, d1), (P(w1, d1)[0], P(w1, d1)[1] + T), (P(w0, d1)[0], P(w0, d1)[1] + T))}" fill="#080d1c"/>'
+                       f'<polygon points="{pts(P(w1, d0), P(w1, d1), (P(w1, d1)[0], P(w1, d1)[1] + T), (P(w1, d0)[0], P(w1, d0)[1] + T))}" fill="#060a16"/>'
+                       f'<polygon points="{pts(P(w0, d0), P(w1, d0), P(w1, d1), P(w0, d1))}" fill="#0a1124" stroke="#18213f" stroke-linejoin="round"/>')
+
+              # month labels along the front edge
+              labels, prev = [], None
+              for c in range(ncols):
+                  m = (first_sun + timedelta(days=c * 7 + 3)).month
+                  if m != prev:
+                      labels.append((c, m))
+                      prev = m
+              if len(labels) > 1 and labels[1][0] - labels[0][0] < 3:
+                  labels.pop(0)
+              month_svg = "".join(
+                  f'<text x="{P(c, d1)[0]:.1f}" y="{P(c, d1)[1] + 18:.1f}" class="mo">{MONTHS[m - 1]}</text>'
+                  for c, m in labels)
+
+              glow, cols_svg = [], []
+              peak = max(best, 1)
+              for c in range(ncols):
+                  cells = []
+                  for d, dt, n in cols.get(c, []):
+                      lv = level(n)
+                      h = FLAT if n == 0 else min(MAX_TOWER + 5, 5 + MAX_TOWER * (n / peak) ** 0.65)
+                      top, left, right = building(c, d, h)
+                      if lv >= 3:
+                          op = ' opacity=".45"' if lv == 3 else ""
+                          glow.append(f'<polygon points="{top}" fill="{COLORS[lv]}"{op}/>')
+                      title = f"{MONTHS[dt.month - 1].capitalize()} {dt.day:02d}, {dt.year}: {n}"
+                      cells.append(f'<g><title>{title}</title><polygon class="l{lv}" points="{left}"/>'
+                                   f'<polygon class="r{lv}" points="{right}"/><polygon class="t{lv}" points="{top}"/></g>')
+                  cols_svg.append(f'<g class="col" style="animation-delay:{c * 0.03:.2f}s">{"".join(cells)}</g>')
+
+              legend = "".join(f'<rect x="{826 + 18 * i}" y="84" width="13" height="13" rx="3.5" fill="{COLORS[i]}"/>'
+                               for i in range(5))
+              stats = [("CONTRIBUTIONS", f"{total}"), ("ACTIVE DAYS", f"{active}"),
+                       ("LONGEST STREAK", f"{longest} d"), ("CURRENT STREAK", f"{current} d"),
+                       ("BEST DAY", f"{best}")]
+              fy = H - 70
+              stats_svg = ""
+              for i, (lbl, val) in enumerate(stats):
+                  x = 32 + 188 * i
+                  stats_svg += (f'<circle cx="{x + 160}" cy="{fy + 21}" r="3" fill="#3b6cff"/>'
+                                f'<text x="{x}" y="{fy + 22}" class="lbl">{lbl}</text>'
+                                f'<text x="{x}" y="{fy + 52}" class="num">{val}</text>')
+
+              return f'''<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}" role="img" aria-label="Contribution city for @{login}: {total} contributions in the last year">
+          <defs>
+          <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0b1020"/><stop offset="1" stop-color="#05070f"/></linearGradient>
+          <filter id="glow" filterUnits="userSpaceOnUse" x="0" y="0" width="{W}" height="{H}"><feGaussianBlur stdDeviation="5"/></filter>
+          <linearGradient id="bar" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#00e5ff" stop-opacity="0"/><stop offset=".3" stop-color="#00e5ff"/><stop offset=".7" stop-color="#3b6cff"/><stop offset="1" stop-color="#b44dff" stop-opacity="0"/></linearGradient>
+          </defs>
+          <style>
+          text{{font-family:'SFMono-Regular',Consolas,'Liberation Mono',Menlo,monospace}}
+          .top{{font-size:10.5px;letter-spacing:3px;fill:#cfd6ee}}
+          .mo{{font-size:9.5px;letter-spacing:1.5px;fill:#8a93b2}}
+          .dl{{font-size:8.5px;letter-spacing:1.5px;fill:#6d7799}}
+          .lbl{{font-size:10px;letter-spacing:3px;fill:#8a93b2}}
+          .num{{font-size:24px;font-weight:700;fill:#fff}}
+          {css_levels}.col{{animation:rise .8s ease both}}
+          @keyframes rise{{from{{opacity:0;transform:translateY(10px)}}to{{opacity:1;transform:translateY(0)}}}}
+          .gl{{animation:pulse 4s ease-in-out infinite}}
+          @keyframes pulse{{50%{{opacity:.45}}}}
+          .scan{{animation:scan 7s linear infinite}}
+          @keyframes scan{{from{{transform:translateX(0)}}to{{transform:translateX(800px)}}}}
+          </style>
+          <rect width="{W}" height="{H}" rx="22" fill="url(#bg)" stroke="#161d36"/>
+          <text x="32" y="40" class="top">CONTRIBUTION CITY · @{login.upper()}</text>
+          <text x="968" y="40" class="top" text-anchor="end" style="fill:#ffd166">{total} IN THE LAST YEAR</text>
+          <rect x="32" y="52" width="936" height="1.6" rx=".8" fill="url(#bar)" opacity=".8"/>
+          {plate}
+          {month_svg}
+          <g class="gl" filter="url(#glow)">{"".join(glow)}</g>
+          {"".join(cols_svg)}
+          <g class="scan" opacity=".55"><rect x="84" y="70" width="26" height="290" fill="#ffffff" opacity=".13" style="mix-blend-mode:screen"/></g>
+          <text x="788" y="94" class="dl">LESS</text>{legend}<text x="922" y="94" class="dl">MORE</text>
+          <line x1="32" y1="{fy}" x2="968" y2="{fy}" stroke="#18213f"/>{stats_svg}
+          </svg>
+          '''
+
+
+          def main():
+              today = datetime.now(timezone.utc).date()
+              days = fetch(USER, today - timedelta(days=364), today)
+              with open(OUT, "w", encoding="utf-8") as f:
+                  f.write(render(days, USER, today))
+              print(f"Wrote {OUT}: {sum(days.values())} contributions over {len(days)} days")
+
+
+          if __name__ == "__main__":
+              main()
+          PY
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add contrib-city.svg
+          git diff --staged --quiet || git commit -m "chore: update contribution city"
+          git push

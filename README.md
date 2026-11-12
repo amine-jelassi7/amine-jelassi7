@@ -15,7 +15,6 @@
 
 
 
-<br/>
 
 <img src="contrib-city.svg" width="100%" alt="GitHub contribution city" />
 
